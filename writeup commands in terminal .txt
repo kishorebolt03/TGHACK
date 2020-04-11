@@ -1,0 +1,19 @@
+apktool d -f -r <APK name> 
+
+jadx-gui 
+  open <APK name> with jadx-gui
+
+subl <APK name>
+  Go to smali/no/tghack/gaiainvaders/HomeActivity$onCreate$1
+  change GaiaInvadersActivity in the last to JokeActivity
+
+keytool -genkey -V -keystore key.keystore -alias gaia -keyalg RSA -keysize 2048 -validity 1000
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore key.keystore gaiainvaders/dist/gaiainvaders.apk gaia
+
+zipalign -v 4 gaiainvaders/dist/gaiainvaders.apk gaiainvaders/dist/signed.apk
+
+adb install gaiainvaders/dist/signed.apk 
+
+open APK in Smart phone and click "Play game" and then press "GIEF Answer" and There the FLag is .
+
